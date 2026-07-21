@@ -12,7 +12,7 @@ import { PostHeader } from "@/app/_components/post-header";
 export default async function Post(props: Params) {
   const params = await props.params;
   const post = getPostBySlug(params.slug);
-
+  console.log("Post Params " + params)
   if (!post) {
     return notFound();
   }
@@ -29,7 +29,6 @@ export default async function Post(props: Params) {
             title={post.title}
             coverImage={post.coverImage}
             date={post.date}
-            author={post.author}
           />
           <PostBody content={content} />
         </article>
