@@ -1,27 +1,24 @@
 ---
 title: "Light's Out: Horror using ML techniques"
 excerpt: "Lights out is a small horror demo, using Q-Learning to make an enemy that really learns your patterns as you play, to make sure it knows your next move, perhaps even before you do."
-coverImage: "/assets/blog/Natures-Reprise/title.webp"
-date: "2024-12-07T05:35:07.322Z"
+coverImage: "/assets/blog/lights-out/title.webp"
+date: "2025-05-21T05:35:07.322Z"
 ogImage:
-  url: "/assets/blog/Natures-Reprise/title.webp"
+  url: "/assets/blog/lights-out/title.webp"
 ---
-## What is Nature's Reprise? 
-Nature’s Reprise is a 2D Puzzle Platformer developed using Godot. This game tells the story of a nature spirit exploring the world, until they fall asleep in their home tree. When they wake up, everything had change and the player needs to find out what happened.
+## What is Light's Out? 
+Lights out is a single-player horror game I, on a team with two other people, developed for my Game Development Concentration. The player must venture out of their bunker to gather resources each night, while avoiding the hunting specter that roams the halls. Their flashlight serves as their most important tool, but also their biggest giveaway as once the specter sees it, its gonna be lights out for the player.
 
-The game was made, as mentioned previously, with a very interdisciplinary team. Only 2 people on the team of 5 knew how to code, and so this project became a great chance for me to bridge the gaps that can arise when you only work with people who know the coding side of games.
+This game has its main antagonist use Q-learning to learn player patterns about how they move around the house, to make it so that they can really adapt and offer players who get to comfortable a scare when they are already there.
 
-The nature spirit has two abilities, the ability to toss the green gem that follows them onto a wall to create climbable vines, and the ability to regenerate dead bits of nature back to life. These are both tied to a limited resource, and so how the player decides to use the resource will shape their success, with cleaver use trivializing things, and bad use making it impossible.
+Lights Out was made entirely within in Unity, using Unity’s Blueprint language primarily. The main design motivation is modern horror games loosing their charm once you learn how the AI works, so we leveraged AI in order to make the AI much harder to understand just from playing the game itself, thus keeping the feeling of horror alive much longer.
 
-Because of the scope of the team, and the tight timeframe we had to do this, we made sure to make a well fleshed out design document, so everyone would be on the same page, and that time would not be wasted. The design document goes into great details about the game itself and the goals of it.
-<iframe src="/assets/blog/Natures-Reprise/game-design-document.pdf" width="100%" height="500px"></iframe>
+## My Role in Light's Out
 
-<iframe src="/assets/blog/Natures-Reprise/high-design-presentation.pdf" width="100%" height="500px"></iframe>
+Within this project, I was the head developer of the AI for the main enemy, and little spiders that serve to keep the player moving.
 
-## My Role in Nature's Reprise
+The main enemy used Q-learning, specifically SARSA algorithm and an epsilon-greedy policy to learn. This allowed us to set the epsilon high in the first few nights so that the the AI has a chance to explore many options and not get stuck doing one thing. Then as the player successfully completes more nights, we tune the epsilon down so that they AI becomes much more of a hunting enemy that must be avoided. I used the number of items the player has returned, and what item the player is holding, if any, for the state of the AI, with its goal being to minimize distance between them and the player. The AI’s actions were the ability to choose what room to go to once they reached their previously selected room. This means the AI could learn the path players take when they have items and the order they like to get items, increasing drastically the ability for it to cut off the player and be ready for them when they show up.
 
-I acted primarily as the lead gameplay mechanics programmer, and worked with other in the level design and sound design department.
+Outside of that, the Specter is also able to see the players flashlight, which acts as the incentive to not use it. Initially we thought it would be enough just to have the setting being dark to encourage the player to use their light, however after talking with some people we learned that there are a good number of ways to get around just visual darkness, so we added spiders that crawl in the darkness. They begin to fester around the player if their light isn’t on, and should they be ignored, will eventually alert the specter. This gives players competing obligations, to keep the light off and stay relatively safe, or to turn it on and see better and not deal with spiders. This decision is a core part of the player experience in Lights Out!
 
-In programming the mechanics, I learned a lot about how the core gameplay loop worked, as well as a much more feasible idea of what mechanics are feasible and what aren’t within a time frame. For example, if you look within the design document, it is mentioned that the player character was supposed to have a vine swing. After exploring it a bit, and trying to prototype, it quickly became apparent that it was not possible to do well within our timeframe. So, knowing that if the player has only one ability it would make it much harder to design puzzles with multiple meaningful decisions, we gave them the regeneration ability instead. This allowed for us to keep some of the depth as before, lean more into the puzzle part of the genre, and deliver the prototype on time.
-
-While working on the sound and level design, it really became clear just how much these two things play into the theming and feel of the game. The first section, before nature goes wrong, is much more friendlier and easier, which makes the second section’s difficulty increase and harder platforming add a feeling of the world becoming harder to live in. It was a very meaningful design choice to start the second section of the game in the cave, so the player could have this ‘what happened’ moment when they exit, which help just drive home the feeling off something wrong much more.
+This project has taught me not just how to implement an AI, but how to merge AI learning with other game mechanics in order to create a unique and engaging player experience.
