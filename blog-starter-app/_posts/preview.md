@@ -1,10 +1,10 @@
 ---
 title: "Nature's Reprise: Multi-Talented Development"
 excerpt: "Nature's Reprise is a 2D Puzzle platformer developed with interdisciplinary team in to go from concept to working game demo, telling a story of one guardian trying to bring nature back to the world."
-coverImage: "/assets/blog/Natures-Reprise/title.webp"
+coverImage: "/assets/blog/Natures-Reprise/Title.webp"
 date: "2024-12-07T05:35:07.322Z"
 ogImage:
-  url: "/assets/blog/Natures-Reprise/title.webp"
+  url: "/assets/blog/Natures-Reprise/Title.webp"
 ---
 ## What is Nature's Reprise? 
 Nature’s Reprise is a 2D Puzzle Platformer developed using Godot. This game tells the story of a nature spirit exploring the world, until they fall asleep in their home tree. When they wake up, everything had change and the player needs to find out what happened.
