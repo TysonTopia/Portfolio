@@ -1,4 +1,5 @@
 import { Post } from "@/interfaces/post";
+import { withBasePath, withBasePathInContent } from "@/lib/base-path";
 import fs from "fs";
 import matter from "gray-matter";
 import { join } from "path";
@@ -14,8 +15,17 @@ export function getPostBySlug(slug: string) {
   const fullPath = join(postsDirectory, `${realSlug}.md`);
   const fileContents = fs.readFileSync(fullPath, "utf8");
   const { data, content } = matter(fileContents);
+  const postData = data as Partial<Post>;
 
-  return { ...data, slug: realSlug, content } as Post;
+  return {
+    ...postData,
+    slug: realSlug,
+    content: withBasePathInContent(content),
+    coverImage: withBasePath(postData.coverImage || ""),
+    ogImage: postData.ogImage?.url
+      ? { ...postData.ogImage, url: withBasePath(postData.ogImage.url) }
+      : postData.ogImage,
+  } as Post;
 }
 
 export function getAllPosts(): Post[] {
